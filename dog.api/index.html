@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog api</title>
+</head>
+
+<body>
+
+   <div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW7zpG7Q2QGK9YGchMgfbXycRtDimjSCjk8w&s"
+    width="550px" height="650px" id="image">
+    <form>
+        <label>Breed :</label>
+        <select id="select1">
+            <option  value="boxer">Boxer</option>
+            <option  value="pug">pug</option>
+            <option value="germanshepherd">germanshepherd</option>
+            <option value="hound"> hound</option>
+            <option value="Labrador"> Labrador</option>
+            <option value="Golden"> Golden</option>
+            <option value="Beagle"> Beagle</option>
+        </select>
+    </form>
+   </div>
+
+
+
+    
+
+
+    <button onclick=" return breeds()">fetch </button>
+
+    <script>
+
+
+
+
+        // const getDog = async ()=>{
+
+        //     event.preventDefault();
+
+        //     try{
+        //         let res = await fetch('https://dog.ceo/api/breeds/image/random');
+
+        //         let final = await res.json();
+
+        //         console.log(final);
+
+        //         let img = document.getElementById('image');
+
+
+        //         img.src =final.message;
+
+        //     }catch(err){
+        //         console.log(err)
+        //     }
+
+        // }
+
+
+
+
+
+
+
+        const breeds = async () => {
+
+            let select = document.getElementById('select1').value;
+            console.log(select);
+
+            try {
+
+                let data = await fetch(`https://dog.ceo/api/breed/${select}/images/random`);
+
+                let result = await data.json();
+
+                console.log(result.message);
+
+
+                let img = document.getElementById('image');
+                img.src = result.message;
+
+            } catch (err) {
+                console.log(err);
+
+            }
+
+        }
+
+        breeds()
+
+
+    </script>
+
+</body>
+
+</html>
